@@ -126,7 +126,7 @@ class MailView extends React.Component {
   render() {
     return (
         <div className="dashboard-container">
-          <SideListView dispatch={this.props.dispatch} menu="compose" router={this.props.router}/>
+          <SideListView dispatch={this.props.dispatch} menu="create" router={this.props.router}/>
           <div className="dashboard-content">
             <div className="flex-container">
               {!this.props.mail.status && 

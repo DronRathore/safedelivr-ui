@@ -4,9 +4,8 @@ var path = require('path')
 
 const appConfig = yaml.load(path.resolve('./config', './application.yml'))
 appConfig.ip = appConfig.ip || "localhost"
-appConfig.port = appConfig.port || "4000"
+appConfig.port = process.env.port || appConfig.port || "4000"
 const config = new Map()
-
 config.set("env", process.env.NODE_ENV || "dev")
 config.set('dir_src',  path.resolve("./", "src"));
 config.set('dir_dist', path.resolve("./", "dist"))
@@ -79,5 +78,7 @@ config.set('vendor_dependencies', [
   'redux',
   'react-router-redux'
 ]);
-
+process.on("uncaughtException", function(error){
+  console.log(error)
+})
 module.exports = config

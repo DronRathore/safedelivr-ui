@@ -6,11 +6,13 @@ import route from "./route"
 import user from "./user"
 import batches from "./batches"
 import mail from "./mail"
+import stats from "./stats"
 
 export default combineReducers({
 	route,
   // home,
   user,
   batches,
-  mail
+  mail,
+  stats
 })

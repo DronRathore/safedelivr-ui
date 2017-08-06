@@ -2,15 +2,16 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import {isServer} from 'utils/isServer'
-import {fetchUserData} from "../actions/dashboardViewActions"
+import {fetchUserData, fetchStats} from "../actions/dashboardViewActions"
 import SideListView from "./sideListView"
-import { LineChart, Line, CartesianGrid, Tooltip, XAxis, YAxis } from 'recharts';
+import { AreaChart, Area, Line, CartesianGrid, Tooltip, XAxis, YAxis } from 'recharts';
 
 if (!isServer()){
   require("styles/dashboardView.scss")
 }
 const mapStateToProps = (state) => ({
-  user: state.user
+  user: state.user,
+  stats: state.stats
 })
 
 const mapDispatchToProps = (dispatch)=>{
@@ -34,6 +35,7 @@ class DashboardView extends React.Component {
   }
   componentDidMount() {
     fetchUserData(this.props.dispatch)
+    fetchStats(this.props.dispatch)
     console.log("Component has been mounted")
   }
   redirectToLogin() {
@@ -50,15 +52,16 @@ class DashboardView extends React.Component {
               <span className="info">Go to our API documentation page to get familiar with the API</span>
             </div>
             <div className="status-chart">
-              <LineChart width={600} height={300} data={this.props.stats} margin={{ top: 5, right: 5, bottom: 5, left: 0 }}>
-                <Line type="monotone" dataKey="uv" stroke="#8884d8" />
-                <CartesianGrid stroke="#ccc" strokeDasharray="5 5" />
-                <XAxis dataKey="name" />
+              <AreaChart width={600} height={300} data={this.props.stats.data} margin={{ top: 5, right: 5, bottom: 5, left: 0 }}>
+                <Area type='monotone' dataKey='success' stackId="1" stroke='#8884d8' fill='#8884d8' />
+                <Area type='monotone' dataKey='queued' stackId="1" stroke='#82ca9d' fill='#82ca9d' />
+                <Area type='monotone' dataKey='failed' stackId="1" stroke='#ffc658' fill='#ffc658' />
+                <CartesianGrid strokeDasharray="3 3"/>
+                <XAxis dataKey="date" />
                 <YAxis />
                 <Tooltip />
-              </LineChart>
+              </AreaChart>
             </div>
-            <input type="text" value={this.props.user.api_key} readOnly/>
           </div>
         </div>
       )

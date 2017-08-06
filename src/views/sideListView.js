@@ -41,6 +41,9 @@ class SideListView extends React.Component {
     this.props.dispatch({
       type: "UNSET_BATCH"
     })
+    this.setState({
+      menu: name
+    })
     return false
   }
   render() {
@@ -74,6 +77,16 @@ class SideListView extends React.Component {
               onClick={this.changeMenu}
             >
               Logs
+            </a>
+          </li>
+          <li>
+            <a
+              href="/settings"
+              className={this.state.menu == "settings"? "selected": ""}
+              data-name="settings"
+              onClick={this.changeMenu}
+            >
+              Settings
             </a>
           </li>
         </ul>

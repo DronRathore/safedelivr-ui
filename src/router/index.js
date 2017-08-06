@@ -85,6 +85,19 @@ export class Router {
           }}
         />
         <Route 
+          path="/settings"
+          onChange={this.onchange}
+          chunkName="settingsView"
+          getComponent={(location, callback)=>{
+            console.log("Getting componenet")
+            requireCss("dashboardView", ()=>{
+              require.ensure(["views/settingsView"], (_require)=>{
+                 callback(null, require("views/settingsView").default)
+              }, "settingsView")
+            })
+          }}
+        />
+        <Route 
           path="/logs"
           onChange={this.onchange}
           chunkName="dashboardView"

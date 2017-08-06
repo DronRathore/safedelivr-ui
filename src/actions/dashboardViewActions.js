@@ -13,3 +13,12 @@ export function fetchUserData(dispatch){
 		console.log(err)
 	})
 }
+export function fetchStats(dispatch){
+  var url = "/api/stats"
+  axios.get(url).then((response)=>{
+    dispatch({
+      type: "SET_STATS",
+      payload: response.data
+    })
+  })
+}
