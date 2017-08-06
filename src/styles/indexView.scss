@@ -34,9 +34,14 @@ body {
 	    padding: 10px;
 	    padding-left: 43px;
 	    border: 1px solid #aaa;
+      -webkit-outline: none;
+      outline: none;
 	    cursor: pointer;
 	    &:active{
-	    	-webkit-overlay: none;
+	    	-webkit-outline: none;
+	    	outline: none;
+        background: url('https://assets-cdn.github.com/pinned-octocat.svg'), linear-gradient(#eee,#ccc);
+        background-repeat: no-repeat;  
 	    }
 	}
 	.login-buttons{

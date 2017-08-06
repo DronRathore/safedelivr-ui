@@ -39,7 +39,7 @@ class HeaderView extends React.Component {
     return false
   }
   getHeaderLinks() {
-    if (this.props.user && this.props.user.email != "") {
+    if (this.props.user && this.props.user.email != undefined) {
       // user header
       return (
           <div>
@@ -47,16 +47,16 @@ class HeaderView extends React.Component {
               <span className="link"><a href="/dashboard">safedelivr</a></span>
             </div>
             <div className="lfloat-links rfloat-links">
-              <span className="link"><a href="/api/logout">Logout</a></span>
+              <span className="link"><a href="/api/user/logout">Logout</a></span>
             </div>
           </div>
         )
     } else {
       return (
-        <div className="header-links">
+        <div>
           <div className="lfloat-links">
-            <span className="link"><a href="/status">API Status</a></span>
             <span className="link"><a href="/docs">Documentation</a></span>
+            <span className="link"><a href="https://github.com/dronrathore/safedelivr">Code</a></span>
           </div>
         </div>
         )

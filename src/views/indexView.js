@@ -44,7 +44,7 @@ class IndexView extends React.Component {
         <div className="body-container">
           <div className="center-body">
             <h1>safeDelivr</h1>
-            <h2>Fault Tolerant Email delivery for Hoomen</h2>
+            <h2>Fault Tolerant Email delivery for Hooman</h2>
             <div className="login-buttons">
               <button className="login-button" onClick={this.redirectToLogin}>Login with Github</button>
             </div>

@@ -21,6 +21,7 @@ const webpackConfig = {
     dashboardView: [`${srcDir}/views/dashboardView.js`],
     logView: [`${srcDir}/views/logView.js`],
     mailView: [`${srcDir}/views/mailView.js`],
+    docsView:[`${srcDir}/views/docsView.js`],
     vendor: config.get('vendor_dependencies')
   },
   output: {

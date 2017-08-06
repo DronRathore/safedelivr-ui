@@ -6,42 +6,6 @@ import IndexRoute from "react-router/lib/IndexRoute"
 import {requireCss} from "../utils/requireCSS"
 if (typeof require.ensure !== 'function') require.ensure = (d, c) => c(require)
 
-// if (!__SERVER__) {
-//   window.requireStyle = requireStyle = (chunkname, skip) => {
-//     // const Skip = skip && isBackendPrinted
-//     if (document.getElementById(`chunk-${chunkname}`)) {
-//       return new Promise(resolve => {
-//         resolve()
-//       })
-//     }
-//     return new Promise(resolve => {
-//       const callCb = () => {
-//         resolve()
-//       }
-//       requireCss(chunkname, callCb)
-//     })
-//   }
-// } else {
-//   requireStyle = () => {
-//     return new Promise(resolve => {
-//       resolve()
-//     })
-//   }
-// }
-
-// function loadResource (chunkname, skip) {
-//   const hasRID = window.requestIdleCallback
-//   if (hasRID) {
-//     const func = () => {
-//       requireStyle(chunkname, skip)
-//     }
-//     window.requestIdleCallback(func)
-//   } else {
-//     requireStyle(chunkname, skip)
-//   }
-// }
-
-
 export class Router {
 	constructor(props) {
 		// do something
@@ -52,7 +16,6 @@ export class Router {
 				<IndexRoute
 					chunkName="indexView"
 					getComponent={(location, callback)=>{
-            console.log("Getting componenet")
 					requireCss("indexView", ()=>{
 						require.ensure(["views/indexView"], (_require)=>{
 							 callback(null, require("views/indexView").default)
@@ -76,11 +39,22 @@ export class Router {
           onChange={this.onchange}
           chunkName="dashboardView"
           getComponent={(location, callback)=>{
-            console.log("Getting componenet")
-            requireCss("dashboardView", ()=>{
+            requireCss("docsView", ()=>{
               require.ensure(["views/dashboardView"], (_require)=>{
                  callback(null, require("views/dashboardView").default)
               }, "dashboardView")
+            })
+          }}
+        />
+        <Route 
+          path="/docs"
+          onChange={this.onchange}
+          chunkName="docsView"
+          getComponent={(location, callback)=>{
+            requireCss("docsView", ()=>{
+              require.ensure(["views/docsView"], (_require)=>{
+                 callback(null, require("views/docsView").default)
+              }, "docsView")
             })
           }}
         />
@@ -89,7 +63,6 @@ export class Router {
           onChange={this.onchange}
           chunkName="settingsView"
           getComponent={(location, callback)=>{
-            console.log("Getting componenet")
             requireCss("dashboardView", ()=>{
               require.ensure(["views/settingsView"], (_require)=>{
                  callback(null, require("views/settingsView").default)
@@ -102,7 +75,6 @@ export class Router {
           onChange={this.onchange}
           chunkName="dashboardView"
           getComponent={(location, callback)=>{
-            console.log("Getting componenet")
             requireCss("dashboardView", ()=>{
               require.ensure(["views/logView"], (_require)=>{
                  callback(null, require("views/logView").default)
@@ -114,7 +86,6 @@ export class Router {
           onChange={this.onchange}
           chunkName="dashboardView"
           getComponent={(location, callback)=>{
-            console.log("Getting componenet")
             requireCss("dashboardView", ()=>{
               require.ensure(["views/logView"], (_require)=>{
                  callback(null, require("views/logView").default)
@@ -127,7 +98,6 @@ export class Router {
           onChange={this.onchange}
           chunkName="dashboardView"
           getComponent={(location, callback)=>{
-            console.log("Getting componenet")
             requireCss("dashboardView", ()=>{
               require.ensure(["views/logView"], (_require)=>{
                  callback(null, require("views/logView").default)
@@ -144,42 +114,3 @@ export class Router {
 		// tracking code, or other meta
 	}
 }
-//  <Route 
-//    path="/inbox"
-//    chunkName="inboxView"
-//    onChange={this.onchange}
-//    getComponent= {(location, callback)=>{
-//      requireCss("inboxView", ()=>{
-//        require.ensure(["views/inboxView"], (_require)=>{
-//          callback(null, require("views/inboxView"))
-//        }, "inboxView")
-//      })  
-//    }}
-//  />
-//  <Route 
-//    path="/sent"
-//    chunkName="sentView"
-//    type="locality"
-//    onChange={this.onchange}
-//    getComponent= {(location, callback)=>{
-//      requireCss("indexView", ()=>{
-//        require.ensure(["views/sentView"], (_require)=>{
-//          callback(null, require("views/sentView"))
-//        }, "sentView")
-//      })  
-//    }}
-//  />
-//  <Route 
-//    path="/logout"
-//    chunkName="logoutView"
-//    type="locality"
-//    onChange={this.onchange}
-//    getComponent= {(location, callback)=>{
-//      requireCss("indexView", ()=>{
-//        require.ensure(["views/logoutView"], (_require)=>{
-//          callback(null, require("views/logoutView"))
-//        }, "logoutView")
-//      })  
-//    }}
-//  />
-// </Route>
