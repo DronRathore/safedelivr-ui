@@ -1,0 +1,7 @@
+*_error.log
+*-error.log
+*error
+*-lock*
+dist/
+server/
+node_modules

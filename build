@@ -1,0 +1,11 @@
+#!/bin/bash
+# set -e
+# # Node Sass has a weired bug when you try to bundle it
+# npm rebuild node-sass
+yarn install --production
+rm -rf dist/*
+rm -rf server/*
+rm -rf ./dist
+mkdir ./dist
+./node_modules/.bin/webpack
+./node_modules/.bin/babel src/ --out-dir server/

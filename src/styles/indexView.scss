@@ -1,0 +1,45 @@
+@import "core";
+
+body {
+	background: white;
+}
+.body-container{
+	width: 100%;
+	display: inline-block;
+	border-bottom: 1px solid #ccc;
+	height: 340px;
+	background: #fff3f3;
+}
+.center-body{
+	width: 780px;
+	margin: 0 auto;
+	h1 {
+	    font-size: 53px;
+	    color: #555;
+	    font-weight: lighter;
+	    text-align: center;
+	    margin-top: 85px;
+	}
+	h2 {
+		font-weight: lighter;
+		text-align: center;
+	}
+	.login-button{
+		font-weight: normal;
+		font-family: "Open Sans", verdana;
+	    background: url('https://assets-cdn.github.com/pinned-octocat.svg'), linear-gradient(#fff,#eee);
+	    background-repeat: no-repeat;
+	    border-radius: 22px;
+	    font-size: 14px;
+	    padding: 10px;
+	    padding-left: 43px;
+	    border: 1px solid #aaa;
+	    cursor: pointer;
+	    &:active{
+	    	-webkit-overlay: none;
+	    }
+	}
+	.login-buttons{
+		text-align: center;
+	}
+}

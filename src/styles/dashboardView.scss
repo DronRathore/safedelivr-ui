@@ -1,0 +1,131 @@
+
+.left-menu{
+	margin: 0;
+	padding:0;
+  padding-top: 50px;
+  width: 120px;
+  border-right: 1px solid #ccc;
+  position: fixed;
+  top: 0;
+  height: 100%;
+  box-shadow: 0 0 3px rgba(0, 0, 0, 0.3);
+  li{
+    margin:0;
+    list-style: none;
+    padding: 0;
+    box-sizing: border-box;
+    a{
+      font-size: 12px;
+      color: #6daae0;
+      display: inline-block;
+      width: 100%;
+      padding: 4px 5px;
+      padding-left: 20px;
+      box-sizing: border-box;
+      &:hover{
+        background: #6daae0;
+        color: #fff;
+      }
+    }
+    a.selected{
+      background: #2c5d88;
+      color: #fff;
+    }
+  }
+}
+.flex-container{
+  background: #e8f6ff;
+  color: #333;
+  font-weight: lighter;
+  padding-left: 20px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #d0e0ea;
+  .salutation{
+    font-size: 27px;
+    display: block;
+    margin-bottom: 10px;
+  }
+  .info{
+    font-size: 12px;
+    font-weight: normal;
+    color: #555;
+    display: block;
+  }
+}
+.dashboard-content{
+  margin-left: 121px
+}
+.batch-table{
+  display: block;
+  margin-left:120px;
+}
+.batch-row {
+  display: flex;
+  display: -webkit-flex;
+  flex-direction: row;
+  -webkit-flex-direction: row;
+  flex-wrap: no-wrap;
+  -webkit-flex-wrap: no-wrap;
+  padding-left: 15px;
+  padding-right: 15px;
+  cursor: pointer;
+  &:hover{
+    background: #6daae0;
+  }
+}
+.batch-cell{
+  flex-grow: 1;
+  flex-direction: row;
+  max-width: 142px;
+  padding: 5px 10px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  font-size: 13px;
+}
+.header-row{
+  background: #ddd;
+  border-bottom: 1px solid #ccc;
+  padding: 6px 10px;
+  cursor: default;
+  font-size: 13px;
+  &:hover{
+    background: #ddd;
+  }
+}
+.ReactTags__tagInput{
+  display: inline-block;
+}
+.ReactTags__tag{
+  display: inline-block;
+  font-size: 12px;
+  padding: 4px 5px;
+}
+.subject, .ReactTags__tagInputField{
+  font-size: 13px;
+  padding: 5px 7px;
+  border-radius: 3px;
+  border: 1px solid #066ce0;
+}
+.input-wrapper{
+  font-size: 14px;
+  font-weight: lighter;
+  padding: 4px;
+}
+.submit{
+  border-radius: 3px;
+  background:  linear-gradient(#fff,#eee);
+  border: 1px solid #aaa;
+  padding: 6px 28px;
+  cursor: pointer;
+  -webkit-outline: none;
+  outline: none;
+  &:active{
+    background:  linear-gradient(#eee,#ddd);
+    -webkit-outline: none;
+    outline: none;
+  }
+}
+.subject{
+  width: 585px;
+}

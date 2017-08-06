@@ -1,0 +1,21 @@
+doctype
+html
+	head
+		link(rel="stylesheet", media="all", href="#{link}")
+		link(rel="stylesheet", media="all", href="#{assetPaths.app.css}")
+		meta(name='viewport', content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimum-scale=1.0')
+		title
+			| #{title}
+	body
+		#app-header
+			!{header}
+		#app-container
+			!{html}
+		#popup-overlay
+	script
+		|window.assetPaths = !{assets}
+		|window.cdnHost = "#{cdnHost}"
+		|InitState = !{JSON.stringify(store)}
+	script(type="text/javascript", src="#{assetPaths.manifest.js}")
+	script(type="text/javascript", src="#{assetPaths.vendor.js}")
+	script(type="text/javascript", src="#{assetPaths.app.js}")
