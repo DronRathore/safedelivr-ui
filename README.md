@@ -21,6 +21,16 @@ To start the server in dev mode you can simply run ```yarn start``` this will st
 To compile the code and run in production mode simply run ```./build``` file, this will compile the server and the frontend assets.
 
 To start the server in prod mode you can run ```yarn run startProd``` or optionally use ```supervisord``` or ```supervisorctl start app``` to boot the server.
+## UI Views
+### Dashboard Stats.
+The chart view shows the stats of last 7 days. It shows the number of failed, success and queued emails.
+![stats](http://i.imgur.com/XX3ovlo.png)
+### Mail compose view.
+Mail compose view helps you compose mail from the UI itself to get a feel of the service.
+![compose mail](http://i.imgur.com/oEYybXr.png)
+### Logs view
+This view shows the Batches and further granular Logs status, this view will reflect new logs/statuses or retrial modes being performed by the server.
+![logs view](http://i.imgur.com/z0Ckzd0.png)
 
 ## What is not done?
 ### Bundle size
