@@ -76,11 +76,12 @@ class DocsView extends React.Component {
             Let us start with sending a Hello World to your friends, you can easily try this with command line <b>curl</b> utility.
           </p>
           <pre>
-            curl <span className="red">-X</span> <span className="yellow">POST</span> --data \<br/>
+            curl <span className="red">-X</span> <span className="yellow">POST</span> \<br/>
+            -H <span className="yellow">Content-Type: application/x-www-form-urlencoded</span> --data \<br/>
               '<span className="orange">from</span>=me@me.com&\<br/>
               <span className="orange">to</span>=you@you.com&\<br/>
-              <span className="orange">subject</span>=Hello World&\<br/>
-              <span className="orange">body</span>=This is my first email&\<br/>
+              <span className="orange">subject</span>=Holla&\<br/>
+              <span className="orange">body</span>=Adios&\<br/>
               <span className="orange">user_id</span>=user_id&\<br/>
               <span className="orange">api_key</span>=api_key' https://safedelivr.com/api/batch/
           </pre>
