@@ -1,4 +1,4 @@
-![safedelivr.com](http://i.imgur.com/S3I357i.png)
+![safedelivr.com](http://i.imgur.com/ZGzd6kW.png)
 # [safedelivr-ui](https://safedelivr.com)
 Front end React App for safedelivr.com
 
