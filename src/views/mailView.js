@@ -28,6 +28,7 @@ class MailView extends React.Component {
     this.state = {
       value : RichTextEditor.createEmptyValue(),
       tags: [],
+      from: this.props.user.email,
       isBulk: false,
       subject: ""
     }
@@ -37,6 +38,7 @@ class MailView extends React.Component {
     this.toggleBulk = this.toggleBulk.bind(this)
     this.setSubject = this.setSubject.bind(this)
     this.sendMail = this.sendMail.bind(this)
+    this.setFrom = this.setFrom.bind(this)
   }
   componentDidMount() {
     fetchUserData(this.props.dispatch)
@@ -46,7 +48,6 @@ class MailView extends React.Component {
     })
   }
   componentWillReceiveProps(nextProps) {
-
   }
   shouldComponentUpdate(nextProps, nextState) {
     if (nextProps.user && nextProps.user.error != undefined){
@@ -60,6 +61,11 @@ class MailView extends React.Component {
         })
       }
       setTimeout(reset.bind(this), 2000)
+    }
+    if (nextProps.user.from != undefined){
+      this.setState({
+        from: nextProps.user.from
+      })
     }
     return true;
   }
@@ -100,6 +106,9 @@ class MailView extends React.Component {
   setSubject(event){
     this.setState({subject: event.target.value})
   }
+  setFrom(event){
+    this.setState({from: event.target.value})
+  }
   sendMail(){
     if (this.state.tags.length == 0)
       return
@@ -110,10 +119,15 @@ class MailView extends React.Component {
     let to = this.state.tags.map((tag)=>{
       return tag.text
     })
+    var from = this.state.from || this.props.user.email
+    if (this.isEmail(from) == false) {
+      alert("From should be an email address")
+      return
+    }
     let options = {
       to: to,
       subject: this.state.subject,
-      from: this.props.user.email,
+      from: this.props.user.email || this.state.from,
       is_bulk: this.state.isBulk,
       body: this.state.value.toString('html')
     }
@@ -145,6 +159,7 @@ class MailView extends React.Component {
             {!this.props.mail.status && 
               <div className="compose-mail-container">
                 <div className="input-wrapper">
+                  <span className="label">Add as many receipient(hit enter):</span>
                   <ReactTags
                     tags={this.state.tags}
                     handleDelete={this.removeEmail}
@@ -153,6 +168,11 @@ class MailView extends React.Component {
                   />
                 </div>
                 <div className="input-wrapper">
+                <span className="label">From:</span><br/>
+                  <input type="text" value={this.state.from} className="subject" onChange={this.setFrom} placeholder="From"/>
+                </div>
+                <div className="input-wrapper">
+                  <span className="label">Subject:</span><br/>
                   <input type="text" className="subject" onChange={this.setSubject} placeholder="Type Subject"/>
                 </div>
                 <RichTextEditor value={this.state.value} onChange={this.onChange}/>
