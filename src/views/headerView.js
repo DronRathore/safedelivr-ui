@@ -25,13 +25,6 @@ class HeaderView extends React.Component {
     this.navigate = this.navigate.bind(this)
     this.getHeaderLinks = this.getHeaderLinks.bind(this)
   }
-  shouldComponentUpdate(nextProps, nextState) {
-    console.log(nextProps, nextState)
-    return true;
-  }
-  componentDidMount() {
-    console.log("HeaderView Component has been mounted")
-  }
   navigate(event) {
     event.preventDefault()
     const href = event.currentTarget.getAttribute('data-href')
@@ -63,7 +56,6 @@ class HeaderView extends React.Component {
     }
   }
   render() {
-    console.log(this.props)
     // print header according to user state
     return (
         <div className="header">

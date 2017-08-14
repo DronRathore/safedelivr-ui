@@ -4,11 +4,13 @@ import { connect } from 'react-redux'
 import {isServer} from 'utils/isServer'
 import {sendMail} from "../actions/mailViewActions"
 import SideListView from "./sideListView"
-import RichTextEditor from 'react-rte/lib/RichTextEditor'
+import {fetchUserData, fetchStats} from "../actions/dashboardViewActions"
 import { WithContext as ReactTags } from 'react-tag-input';
 const EmailRegexp = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+var RichTextEditor = null
 if (!isServer()){
   require("styles/dashboardView.scss")
+  RichTextEditor = require('react-rte/lib/RichTextEditor').default
 }
 const mapStateToProps = (state) => ({
   user: state.user,
@@ -26,7 +28,7 @@ class MailView extends React.Component {
     super(props);
     this.onChange = this.onChange.bind(this)
     this.state = {
-      value : RichTextEditor.createEmptyValue(),
+      value : RichTextEditor && RichTextEditor.createEmptyValue(),
       tags: [],
       from: this.props.user.email,
       isBulk: false,
@@ -39,15 +41,6 @@ class MailView extends React.Component {
     this.setSubject = this.setSubject.bind(this)
     this.sendMail = this.sendMail.bind(this)
     this.setFrom = this.setFrom.bind(this)
-  }
-  componentDidMount() {
-    fetchUserData(this.props.dispatch)
-    this.props.dispatch({
-      type: "ROUTE_CHANGE",
-      payload: "mailView"
-    })
-  }
-  componentWillReceiveProps(nextProps) {
   }
   shouldComponentUpdate(nextProps, nextState) {
     if (nextProps.user && nextProps.user.error != undefined){
@@ -70,7 +63,13 @@ class MailView extends React.Component {
     return true;
   }
   componentDidMount() {
-    console.log("Component has been mounted")
+    this.props.dispatch({
+      type: "ROUTE_CHANGE",
+      payload: "mailView"
+    })
+    if (this.props.user && !this.props.user.email){
+      fetchUserData(this.props.dispatch)
+    }
   }
   redirectToLogin() {
     window.location = "/api/login"
@@ -175,7 +174,9 @@ class MailView extends React.Component {
                   <span className="label">Subject:</span><br/>
                   <input type="text" className="subject" onChange={this.setSubject} placeholder="Type Subject"/>
                 </div>
-                <RichTextEditor value={this.state.value} onChange={this.onChange}/>
+                {RichTextEditor && 
+                  <RichTextEditor value={this.state.value} onChange={this.onChange}/>
+                }
                 <div className="input-wrapper">
                   <input type="checkbox" name="bulk" id="bulk" />
                   <label htmlFor="bulk" onClick={this.toggleBulk}>Send as bulk </label>

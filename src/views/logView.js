@@ -24,9 +24,9 @@ class LogView extends React.Component {
   constructor(props) {
     super(props);
     this.getHeader = this.getHeader.bind(this)
+    this.goBack = this.goBack.bind(this)
   }
   componentWillMount() {
-    fetchUserData(this.props.dispatch)
     this.props.dispatch({
       type: "ROUTE_CHANGE",
       payload: "logsView"
@@ -50,10 +50,18 @@ class LogView extends React.Component {
         payload: this.props.router.params.batch_id
       })
     }
-    console.log("Component has been mounted")
+    if (this.props.user && !this.props.user.email){
+      fetchUserData(this.props.dispatch)
+    }
   }
   redirectToLogin() {
     window.location = "/api/login"
+  }
+  goBack(){
+    this.props.dispatch({
+      type: "UNSET_BATCH"
+    })
+    this.props.router.push('/logs')
   }
   getHeader(){
     if (this.props.batches.selected != undefined){
@@ -62,6 +70,7 @@ class LogView extends React.Component {
         <div className="flex-container">
           <span className="salutation">Batch#{this.props.batches.selected.batch_id.split("-")[0]}</span>
           {selected.subject && <span className="info">{selected.subject}</span>}
+          <button className="submit" onClick={this.goBack}>← Back</button>
         </div>
       )
     }

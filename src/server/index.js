@@ -53,7 +53,7 @@ class Server extends Express {
 		return Action.initActions(req.store.dispatch, req.store.getState).then((data)=>{
 			res.render("index", {
 				html: renderToString(Component),
-        header: renderToString(Header),
+				header: renderToString(Header),
 				assets: assetsString,
 				link: link,
 				cdnHost: config.cdnHost,
@@ -62,6 +62,7 @@ class Server extends Express {
 			})
 			return res.end()
 		}).catch((err)=>{
+			console.log(err)
 			return res.json(err);
 		})
 	}

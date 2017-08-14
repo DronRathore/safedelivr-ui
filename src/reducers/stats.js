@@ -9,7 +9,8 @@ const initialData = {
   {success: 0, date: "Friday", failed: 0, queued: 0},
   {success: 0, date: "Saturday", failed: 0, queued: 0},
   {success: 0, date: "Sunday", failed: 0, queued: 0}
-  ]
+  ],
+  fetched: false
 }
 
 export default createReducer(initialData, {

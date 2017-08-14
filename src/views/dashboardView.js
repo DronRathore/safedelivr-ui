@@ -34,9 +34,12 @@ class DashboardView extends React.Component {
     return true;
   }
   componentDidMount() {
-    fetchUserData(this.props.dispatch)
-    fetchStats(this.props.dispatch)
-    console.log("Component has been mounted")
+    if (this.props.user && !this.props.user.email){
+      fetchUserData(this.props.dispatch)
+    }
+    if (this.props.stats && !this.props.stats.fetched){
+      fetchStats(this.props.dispatch)
+    }
   }
   redirectToLogin() {
     window.location = "/api/login"

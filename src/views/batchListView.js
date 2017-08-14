@@ -38,7 +38,6 @@ class BatchListView extends React.Component {
   }
   componentDidMount() {
     fetchBatches(this.props.dispatch)
-    console.log("Component has been mounted")
   }
   showBatchLogs(event){
     const id = event.currentTarget.getAttribute("data-id")

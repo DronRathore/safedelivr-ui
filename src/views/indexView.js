@@ -27,14 +27,8 @@ class IndexView extends React.Component {
       payload: "indexView"
     })
   }
-  componentWillReceiveProps(nextProps) {
-    
-  }
   shouldComponentUpdate(nextProps, nextState) {
     return false;
-  }
-  componentDidMount() {
-    console.log("Component has been mounted")
   }
   redirectToLogin() {
     window.location = "/api/login"
