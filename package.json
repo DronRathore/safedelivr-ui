@@ -57,7 +57,7 @@
 		"webpack-dev-middleware": "^1.11.0",
 		"webpack-hot-middleware": "^2.18.0",
 		"yamljs": "*",
-		"yarn": "^1.17.3"
+		"yarn": "^1.22.0"
 	},
 	"devDependencies": {
 		"mocha": "^3.1.0"
